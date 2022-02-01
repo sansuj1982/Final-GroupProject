@@ -20,10 +20,13 @@ const createTaskHtml = (name, description, assignedTo, dueDate, status, id) => {
                 Done
                 </button>-->
             <div class="widget-content-right">
-                <div class="badge bg-success">Completed</div>
+                <button class="btn btn-outline-danger delete-button">
+                Delete
+                </button>
+                
                 <button class="border-0 btn-transition btn btn-outline-success"
                     data-bs-toggle="modal" data-bs-target="#taskForm">
-                    <i class="fa fa-check-circle done-button"></i>
+                    <i class="fa fa-check-circle done-button "></i>
                 </button>
             </div>
         </div>
@@ -139,4 +142,25 @@ save() {
       this.currentId = Number(currentId);
     }
     }
+    deleteTask(taskId) {
+        // Create an empty array and store it in a new variable, newTasks
+        const newTasks = [];
+    
+        // Loop over the tasks
+        for (let i = 0; i < this.tasks.length; i++) {
+          // Get the current task in the loop
+          const task = this.tasks[i];
+    
+          // Check if the task id is not the task id passed in as a parameter
+          if (task.id !== taskId) {
+            // Push the task to the newTasks array
+            newTasks.push(task);
+          }
+        }
+    
+        // Set this.tasks to newTasks
+        this.tasks = newTasks;
+        
+        
+      }
 }

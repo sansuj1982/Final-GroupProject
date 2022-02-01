@@ -1,4 +1,9 @@
 const taskManager = new TaskManager(0);
+
+// Load the tasks from localStorage
+taskManager.load();
+// Render the loaded tasks to the page
+taskManager.render();
 //Finding and Displaying the Date
 const dateElement = document.querySelector("#date-element");
 let today = new Date();
@@ -153,11 +158,32 @@ taskList.addEventListener("click", (event) => {
     const task = taskManager.getTaskById(taskId);
     // Update the task status to 'DONE'
     task.status = "Done";
-    
+    taskManager.save();
+    // Render the tasks
+    taskManager.render(); 
+    console.log(taskManager);
+  }
+  // Check if a "Delete" button was clicked
+  if (event.target.classList.contains("delete-button")) {
+    // Get the parent Task
+    const parentTask =
+      event.target.parentElement.parentElement.parentElement.parentElement;
+
+    // Get the taskId of the parent Task.
+    const taskId = Number(parentTask.dataset.taskId);
+
+    // Delete the task
+    taskManager.deleteTask(taskId);
+
+    // Save the tasks to localStorage
+    taskManager.save();
+
     // Render the tasks
     taskManager.render();
-  }
-    taskManager.save();
+  }  
+  
+
+
   });
 
 
