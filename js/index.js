@@ -27,10 +27,35 @@ newTaskForm.addEventListener("submit", (event) => {
     console.log("status:  " + newTaskStatus.value);
     let validationFail = 0;
     
-     // Prevent default action
-     event.preventDefault();
+    // Prevent default action
+    event.preventDefault();
 
-// Form validation for Task Field 
+     // Call this to clear all the form fields after the submission
+    const clearFormFields = () => {
+        newTaskNameInput.value = " ";
+        newTaskDescription.value = " ";
+        newTaskAssignedTo.value = " ";
+        newTaskStatus.value = "In Progress";
+        /*newTaskDueDate.value = " ";*/
+        newTaskNameInput.classList.remove("is-valid");
+        newTaskDescription.classList.remove("is-valid");
+        newTaskAssignedTo.classList.remove("is-valid");
+        newTaskStatus.classList.remove("is-valid");
+        newTaskDueDate.classList.remove("is-valid");
+    };
+
+    // new date format
+    let todaysDate = new Date(Date.now())
+       .toLocaleString()
+       .split(",")[0]
+       .split("/");
+    let day = todaysDate[0];
+    let month = todaysDate[1];
+    let year = todaysDate[2];
+  /* taskDueDate is in yyyy-mm-dd format
+    let taskDueDate = validatenewTaskDueDate.value.split("-");*/
+
+// Form validation for all the Task Field 
     if (newTaskNameInput.value.length > 5) {
         newTaskNameInput.classList.add("is-valid");
         newTaskNameInput.classList.remove("is-invalid");
@@ -67,17 +92,37 @@ newTaskForm.addEventListener("submit", (event) => {
             validationFail++;
         }
     if (newTaskStatus.value.length != 0) {
-            newTaskStatus.classList.add("is-valid");
-            newTaskStatus.classList.remove("is-invalid");
+        newTaskStatus.classList.add("is-valid");
+        newTaskStatus.classList.remove("is-invalid");
         } else {
             newTaskStatus.classList.add("is-invalid");
             newTaskStatus.classList.remove("is-valid");
             validationFail++;
         }
-
+    
+    /*Form validation that is more advanced for finding due date, was a stretch goal in previous task
+    console.log(
+      `newTaskDueDate[2]:${taskDueDate[2]} day:${day} taskDueDate[1]:${taskDueDate[1]} month:${month} taskDueDate[0]:${taskDueDate[0]} year:${year}`
+    );
+    if (
+      taskDueDate[2] >= day &&
+      taskDueDate[1] >= month &&
+      taskDueDate[0] >= year
+    ) {
+      newTaskDueDate.classList.add("is-valid");
+      newTaskDueDate.classList.remove("is-invalid");
+    } else {
+      newTaskDueDate.classList.add("is-invalid");
+      newTaskDueDate.classList.remove("is-valid");
+      validationFail++;
+    } */
+// If validation fails then function will not proceed further and
+// will return. The value of validationFail will also needed to be
+// reset to 0.
+   
     if (validationFail > 0) {
         validationFail = 0;
-        
+        return;
     } else {
         // Push the valid input into our tasks array
         taskManager.addTask(
@@ -87,13 +132,33 @@ newTaskForm.addEventListener("submit", (event) => {
           newTaskDueDate.value,
           newTaskStatus.value,
         );
+        clearFormFields();
         taskManager.render();
-        
         }    
-   
-
 });
 
+const taskList = document.querySelector("#task-list");
+// Add an 'onclick' event listener to the Tasks List
+taskList.addEventListener("click", (event) => {
+  // Check if a "Mark As Done" button was clicked
+  if (event.target.classList.contains("done-button")) {
+    // Get the correct parent Task, yours might be slightly different
+    // Use console.log(event.target.parentElement) to see
+    const parentTask =
+      event.target.parentElement.parentElement.parentElement.parentElement.parentElement;
+      console.log(parentTask);
+    // Get the taskId of the parent Task and turn it into a number.
+    const taskId = Number(parentTask.dataset.taskId);
+    // Get the task from the TaskManager using the taskId
+    const task = taskManager.getTaskById(taskId);
+    // Update the task status to 'DONE'
+    task.status = "Done";
+    
+    // Render the tasks
+    taskManager.render();
+  }
+    taskManager.save();
+  });
 
 
 
