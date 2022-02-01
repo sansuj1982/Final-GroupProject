@@ -12,7 +12,7 @@
 <!-- https://bbbootstrap.com/snippets/todo-task-list-badges-71324362 -->
 <body class='snippet-body'>
     <div class="bg-image" style="background-image: url(/css/Screen\ Shot\ 2022-01-28\ at\ 6.57.54\ pm.png); height: 1000px;  border: 1px dotted rgb(252, 251, 251);">
-     <div><h1 style="text-align: center; margin: 0%; padding: 1%;">My task planner</h1></div>   
+     <div><h1 style="text-align: center; margin: 0%; padding: 1%;">My task planner</h1></div>
     <div class="bg-text">
     <div style="text-align: center;"><span id="date-element"></span></div>
     <!--<span id="date-element"></span>-->
@@ -53,6 +53,18 @@
                             </div>
                         </div>
                         <div class="mb-3">
+                            <label for="newTaskStatus" class="form-label"><h6>Status</h6></label>
+                            <select name="taskStatus" class="form-control" id="newTaskStatus" aria-describedby="inputGroupPrepend2" required>
+                                <option selected>In progress</option>
+                                <option value="Done">Done</option>
+                                <option value="Pending">Pending</option>
+                            </select>
+                            <div class="valid-feedback">Status is valid!</div>
+                            <div class="invalid-feedback">
+                                status cannot be empty!
+                            </div>
+                        </div>
+                        <div class="mb-3">
                             <label for="newTaskDueDate" class="form-label"><h6>Due Date</h6></label>
                             <input type="date" name="taskDueDate" class="form-control" id="newTaskDueDate" aria-describedby="inputGroupPrepend2" required>
                             <div class="valid-feedback">Task due date is valid!</div>
@@ -60,25 +72,10 @@
                                 Date cannot be empty!
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="newTaskStatus" class="form-label"><h6>Status</h6></label>
-                            <select name="taskStatus" class="form-control" id="newTaskStatus" aria-describedby="inputGroupPrepend2" required>
-                            <!--<select class="custom-select" required>-->
-                            <!--<option value="Choose one">Choose one</option>-->
-                            <option selected>In progress</option>
-                            <option value="Done">Done</option>
-                            <option value="Pending">Pending</option>
-                            <div class="valid-feedback">Status is valid!</div>
-                            <div class="invalid-feedback">
-                                status cannot be empty!
-                            </div>
-                            </select>    
-                        </div>
-                    
                     </div>
-                        
+
                     <div class="modal-footer">
-                        <button type="done" class="btn btn-success" data-bs-dismiss="modal">Done</button>
+                        <button type="done" class="btn btn-success" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
@@ -86,11 +83,11 @@
         </div>
     </div>
 
-    
+
     <div class="container">
         <div class="row d-flex justify-content-md-center">
             <div class="col-sm-5">
-                
+
                 <span class="task-title" id="date-element"></span>
                 <div class="card-hover-shadow-2x mb-3 card">
                     <div class="card-header-tab card-header"style="background-image: url(/css/Screen\ Shot\ 2022-01-28\ at\ 6.57.54\ pm.png); height: 50px;  border: 1px dotted rgb(252, 251, 251);">
@@ -100,7 +97,7 @@
                 </div>
                 <div style="position: relative;" class="ps ps--active-y">
                     <div class="ps-content">
-                        <ul class="list-group list-group-flush" id="task-list">    
+                        <ul class="list-group list-group-flush" id="task-list">
                         </ul>
                     </div>
                 </div>
