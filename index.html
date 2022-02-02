@@ -11,11 +11,10 @@
 
 <!-- https://bbbootstrap.com/snippets/todo-task-list-badges-71324362 -->
 <body class='snippet-body'>
-    <div class="bg-image" style="background-image: url(/css/Screen\ Shot\ 2022-01-28\ at\ 6.57.54\ pm.png); height: 1000px;  border: 1px dotted rgb(252, 251, 251);">
-     <div><h1 style="text-align: center; margin: 0%; padding: 1%;">My task planner</h1></div>
-    <div class="bg-text">
-    <div style="text-align: center;"><span id="date-element"></span></div>
-    <!--<span id="date-element"></span>-->
+    <div class="bg-image" style="background-image: url(/css/Screen\ Shot\ 2022-02-02\ at\ 12.17.04\ pm.png); height: 1000px;  border: 1px dotted rgb(252, 251, 251);">
+        <div><h1>My task planner</h1></div>
+        <div class="bg-text">
+        <div style="text-align: center;"><span id="date-element"></span></div>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="taskForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -32,45 +31,35 @@
                             <label for="newTaskNameInput" class="form-label"><h6>Name</h6></label>
                             <input type="text" name="taskName" class="form-control" id="newTaskNameInput" aria-describedby="inputGroupPrepend2" required>
                             <div class="valid-feedback">Task name is valid!</div>
-                            <div class="invalid-feedback">
-                                Minimum 5 characters required!
-                            </div>
+                            <div class="invalid-feedback">Minimum 5 characters required!</div>
                         </div>
                         <div class="mb-3">
                             <label for="newTaskDescription" class="form-label"><h6>Description</h6></label>
                             <textarea type="text" name="taskDescription" class="form-control" id="newTaskDescription" aria-describedby="inputGroupPrepend2" required></textarea>
                             <div class="valid-feedback">Task description is valid!</div>
-                            <div class="invalid-feedback">
-                                Minimum 5 characters required!
-                            </div>
+                            <div class="invalid-feedback">Minimum 5 characters required!</div>
                         </div>
                         <div class="mb-3">
                             <label for="newTaskAssignedTo" class="form-label"><h6>AssignedTo</h6></label>
                             <input type="text" name="taskAssignedTo" class="form-control" id="newTaskAssignedTo" aria-describedby="inputGroupPrepend2" required>
                             <div class="valid-feedback">Assigned to is valid!</div>
-                            <div class="invalid-feedback">
-                                Minimum 5 characters required!
-                            </div>
+                            <div class="invalid-feedback">Minimum 5 characters required!</div>
                         </div>
                         <div class="mb-3">
                             <label for="newTaskStatus" class="form-label"><h6>Status</h6></label>
                             <select name="taskStatus" class="form-control" id="newTaskStatus" aria-describedby="inputGroupPrepend2" required>
+                                <option value="Pending">Pending</option>
                                 <option selected>In progress</option>
                                 <option value="Done">Done</option>
-                                <option value="Pending">Pending</option>
                             </select>
                             <div class="valid-feedback">Status is valid!</div>
-                            <div class="invalid-feedback">
-                                status cannot be empty!
-                            </div>
+                            <div class="invalid-feedback">Status cannot be empty!</div>
                         </div>
                         <div class="mb-3">
                             <label for="newTaskDueDate" class="form-label"><h6>Due Date</h6></label>
                             <input type="date" name="taskDueDate" class="form-control" id="newTaskDueDate" aria-describedby="inputGroupPrepend2" required>
                             <div class="valid-feedback">Task due date is valid!</div>
-                            <div class="invalid-feedback">
-                                Date cannot be empty!
-                            </div>
+                            <div class="invalid-feedback">Date cannot be empty!</div>
                         </div>
                     </div>
 
@@ -83,12 +72,13 @@
         </div>
     </div>
 
-
     <div class="container">
         <div class="row d-flex justify-content-md-center">
             <div class="col-sm-5">
-
-                <span class="task-title" id="date-element"></span>
+                <div class="card-footer mx-auto justify-content-right" style="background: transparent; height: 50px;">
+                    <button class="btn btn-secondary btn-sm float-right" id="addTask" data-bs-toggle="modal"
+                        data-bs-target="#taskForm">Add New Task</button>
+                </div>
                 <div class="card-hover-shadow-2x mb-3 card">
                     <div class="card-header-tab card-header"style="background-image: url(/css/Screen\ Shot\ 2022-01-28\ at\ 6.57.54\ pm.png); height: 50px;  border: 1px dotted rgb(252, 251, 251);">
                     <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
@@ -101,11 +91,6 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-            <div class="card-footer mx-auto justify-content-right"style="background-image: url(/css/Screen\ Shot\ 2022-01-28\ at\ 6.57.54\ pm.png); height: 50px;  border: 1px dotted rgb(252, 251, 251);">
-                <button class="btn btn-secondary btn-sm float-right" id="addTask" data-bs-toggle="modal"
-                    data-bs-target="#taskForm">Add New Task</button>
-                <!--<button class="btn btn-danger btn-sm float-right" id="deleteTasks">Delete Tasks</button>-->
             </div>
         </div>
     </div>

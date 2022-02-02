@@ -8,9 +8,11 @@ taskManager.render();
 const dateElement = document.querySelector("#date-element");
 let today = new Date();
 const [day, month, year] = [today.getDate(), today.getMonth() + 1, today.getFullYear()];
-console.log(today);
+// console.log(today);
 let dateString = `Current Date: ${day} / ${month} / ${year}`;
 dateElement.innerHTML = dateString;
+let dueDateField = document.querySelector("#newTaskDueDate");
+dueDateField.setAttribute('min', year + '-' + month + '-' + day);
 
 const modalTaskForm = document.getElementById('taskForm');
 
@@ -54,17 +56,6 @@ newTaskForm.addEventListener("submit", (event) => {
     newTaskStatus.classList.remove("is-valid");
     newTaskDueDate.classList.remove("is-valid");
   };
-
-  // new date format
-  let todaysDate = new Date(Date.now())
-    .toLocaleString()
-    .split(",")[0]
-    .split("/");
-  let day = todaysDate[0];
-  let month = todaysDate[1];
-  let year = todaysDate[2];
-  /* taskDueDate is in yyyy-mm-dd format*/
-    // let taskDueDate = validatenewTaskDueDate.value.split("-");
 
   // Form validation for all the Task Field
   if (newTaskNameInput.value.length > 5) {
@@ -142,7 +133,7 @@ taskList.addEventListener("click", (event) => {
     // Get the correct parent Task, yours might be slightly different
     // Use console.log(event.target.parentElement) to see
     const parentTask =
-      event.target.parentElement.parentElement.parentElement.parentElement;
+      event.target.parentElement.parentElement.parentElement.parentElement.parentElement;
     console.log(parentTask);
     // Get the taskId of the parent Task and turn it into a number.
     const taskId = Number(parentTask.dataset.taskId);
@@ -159,7 +150,7 @@ taskList.addEventListener("click", (event) => {
   if (event.target.classList.contains("delete-button")) {
     // Get the parent Task
     const parentTask =
-      event.target.parentElement.parentElement.parentElement.parentElement;
+      event.target.parentElement.parentElement.parentElement.parentElement.parentElement;
 
     // Get the taskId of the parent Task.
     const taskId = Number(parentTask.dataset.taskId);

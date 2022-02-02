@@ -4,19 +4,19 @@ const createTaskHtml = (name, description, assignedTo, dueDate, status, id) => {
     <div class="widget-content p-0">
         <div class="widget-content-wrapper">
             <div class="widget-content-left">
-                <div class="widget-heading">Name: ${name}</div>
-                <div class="widget-description">Description: ${description}</div>
-                <div class="widget-subheading"><i>Assigned To: ${assignedTo}</i></div>
-                <div class="widget-subheading"><i>Due Date: ${dueDate}</i></div>
-                <div class="widget-subheading"><i>Status: ${status}</i></div>
+                <div class="widget-heading">${name}</div>
+                <div class="widget-description">${(status !== 'Done') ? description : ''}</div>
+                <div class="widget-subheading"><i>${(status !== 'Done') ? assignedTo : ''}</i></div>
+                <div class="widget-subheading">${(status !== 'Done') ? dueDate : ''}</div>
             </div>
             <div class="widget-content-right">
-                <button class="btn btn-outline-danger delete-button">
-                Delete
-                </button>
-                <button class="btn btn-outline-success done-button ${(status === 'In progress') ? 'visible' : 'invisible'}">
-                    Done
-                </button>
+              <div class="badge ${(status === 'Done') ? 'bg-success' : 'bg-info'}">${status}</div>
+              <button class="border-0 btn-transition btn btn-outline-success ${(status === 'In progress') ? 'visible' : 'invisible'}">
+                <i class="fa fa-check-circle done-button"></i>
+              </button>
+              <button class="border-0 btn-transition btn btn-outline-success">
+                <i class="fa fa-trash delete-button" data-confirm="Are you sure to delete this task?"></i>
+              </button>
             </div>
         </div>
     </div>
