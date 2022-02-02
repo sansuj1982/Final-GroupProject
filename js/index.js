@@ -63,8 +63,8 @@ newTaskForm.addEventListener("submit", (event) => {
   let day = todaysDate[0];
   let month = todaysDate[1];
   let year = todaysDate[2];
-  /* taskDueDate is in yyyy-mm-dd format
-    let taskDueDate = validatenewTaskDueDate.value.split("-");*/
+  /* taskDueDate is in yyyy-mm-dd format*/
+    // let taskDueDate = validatenewTaskDueDate.value.split("-");
 
   // Form validation for all the Task Field
   if (newTaskNameInput.value.length > 5) {
@@ -94,7 +94,8 @@ newTaskForm.addEventListener("submit", (event) => {
     validationFail++;
   }
 
-  if (newTaskDueDate.value.length != 0) {
+  if (newTaskDueDate.value.length != 0)
+    {
     newTaskDueDate.classList.add("is-valid");
     newTaskDueDate.classList.remove("is-invalid");
   } else {
