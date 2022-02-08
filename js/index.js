@@ -29,15 +29,11 @@ newTaskForm.addEventListener("submit", (event) => {
   //implement a JavaScript function named validFormFieldInput(data)
 
   let newTaskNameInput = document.querySelector('#newTaskNameInput');
-  console.log("name:  " + newTaskNameInput.value);
   let newTaskDescription = document.querySelector('#newTaskDescription');
-  console.log("description:  " + newTaskDescription.value);
   let newTaskAssignedTo = document.querySelector('#newTaskAssignedTo');
-  console.log("assigned to:  " + newTaskAssignedTo.value);
   let newTaskDueDate = document.querySelector('#newTaskDueDate');
-  console.log("due date:  " + newTaskDueDate.value);
   let newTaskStatus = document.querySelector('#newTaskStatus');
-  console.log("status:  " + newTaskStatus.value);
+  dueDateField.setAttribute('min', year + '-' + month + '-' + day);
   let validationFail = 0;
 
   // Prevent default action
@@ -85,8 +81,7 @@ newTaskForm.addEventListener("submit", (event) => {
     validationFail++;
   }
 
-  if (newTaskDueDate.value.length != 0)
-    {
+  if (newTaskDueDate.value.length != 0) {
     newTaskDueDate.classList.add("is-valid");
     newTaskDueDate.classList.remove("is-invalid");
   } else {
@@ -144,22 +139,26 @@ taskList.addEventListener("click", (event) => {
     taskManager.save();
     // Render the tasks
     taskManager.render();
-    console.log(taskManager);
   }
+
   // Check if a "Delete" button was clicked
   if (event.target.classList.contains("delete-button")) {
-    // Get the parent Task
-    const parentTask =
-      event.target.parentElement.parentElement.parentElement.parentElement.parentElement;
+    let choice = confirm(event.target.getAttribute('data-confirm'));
 
-    // Get the taskId of the parent Task.
-    const taskId = Number(parentTask.dataset.taskId);
+    if (choice) {
+      // Get the parent Task
+      const parentTask =
+        event.target.parentElement.parentElement.parentElement.parentElement.parentElement;
 
-    // Delete the task
-    taskManager.deleteTask(taskId);
+      // Get the taskId of the parent Task.
+      const taskId = Number(parentTask.dataset.taskId);
 
-    // Save the tasks to localStorage
-    taskManager.save();
+      // Delete the task
+      taskManager.deleteTask(taskId);
+
+      // Save the tasks to localStorage
+      taskManager.save();
+    }
 
     // Render the tasks
     taskManager.render();

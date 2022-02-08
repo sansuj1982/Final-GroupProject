@@ -10,12 +10,12 @@ const createTaskHtml = (name, description, assignedTo, dueDate, status, id) => {
                 <div class="widget-subheading">${(status !== 'Done') ? dueDate : ''}</div>
             </div>
             <div class="widget-content-right">
-              <div class="badge ${(status === 'Done') ? 'bg-success' : 'bg-info'}">${status}</div>
-              <button class="border-0 btn-transition btn btn-outline-success ${(status === 'In progress') ? 'visible' : 'invisible'}">
+              <div class="badge ${(status === 'Done') ? 'bg-success' : 'bg-warning'}">${status}</div>
+              <button class="border-0 btn-transition btn btn-outline-success ${(status === 'Done') ? 'invisible' : 'visible'}">
                 <i class="fa fa-check-circle done-button"></i>
               </button>
-              <button class="border-0 btn-transition btn btn-outline-success">
-                <i class="fa fa-trash delete-button" data-confirm="Are you sure to delete this task?"></i>
+              <button class="border-0 btn-transition btn">
+                <i class="fa fa-trash delete-button" data-confirm="Are you sure you want to remove this task?"></i>
               </button>
             </div>
         </div>
